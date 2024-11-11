@@ -1,0 +1,99 @@
+package q1;
+class Distance {
+       
+    private int feet;
+    private int inches;
+
+   
+    public void setDistance(int feet, int inches) {
+       
+        if (inches >= 12) {
+            this.feet = feet + inches / 12;
+            this.inches = inches % 12;
+        } else {
+            this.feet = feet;
+            this.inches = inches;
+        }
+    }
+
+ 
+    public void display() {
+        System.out.println(feet + " feet " + inches + " inches");
+    }
+
+
+    public Distance addDistance(Distance d) {
+     
+        int totalInches = (this.feet * 12 + this.inches) + (d.feet * 12 + d.inches);
+        Distance result = new Distance();
+        result.feet = totalInches / 12;
+        result.inches = totalInches % 12;
+        return result;
+    }
+
+      public Distance compareDistance(Distance d) {
+   
+        int thisTotalInches = this.feet * 12 + this.inches;
+        int otherTotalInches = d.feet * 12 + d.inches;
+
+ 
+        if (thisTotalInches > otherTotalInches) {
+            return this;
+        } else {
+            return d;
+        }
+    }
+}
+
+public class DistanceTest {
+    public static void main(String args[]) {
+       
+        Distance d1 = new Distance();
+        Distance d2 = new Distance();
+
+     
+        d1.setDistance(5, 9); 
+        d2.setDistance(6, 3); 
+
+
+        System.out.println("Distance 1: ");
+        d1.display();
+        System.out.println("Distance 2: ");
+        d2.display();
+
+ 
+        Distance sum = d1.addDistance(d2);
+        System.out.println("Sum of Distance 1 and Distance 2: ");
+        sum.display();
+
+     
+        Distance greater = d1.compareDistance(d2);
+        System.out.println("Greater distance: ");
+        greater.display();
+    }
+}
+
+OUTPUT
+
+  Microsoft Windows [Version 10.0.22631.4317]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\student>D:
+
+D:\>cd padma223
+
+D:\padma223>cd q1
+
+D:\padma223\q1>javac DistanceTest.java
+
+D:\padma223\q1>cd ..
+
+D:\padma223>java q1.DistanceTest
+Distance 1:
+5 feet 9 inches
+Distance 2:
+6 feet 3 inches
+Sum of Distance 1 and Distance 2:
+12 feet 0 inches
+Greater distance:
+6 feet 3 inches
