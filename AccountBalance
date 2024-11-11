@@ -34,3 +34,26 @@ class AccountBalance{
 		}
 	}
 }
+OUTPUT
+Microsoft Windows [Version 10.0.22631.4317]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\student>D:
+
+D:\>cd padma 223
+The system cannot find the path specified.
+
+D:\>cd padma223
+
+D:\padma223>cd mypack
+
+D:\padma223\mypack>javac AccountBalance.java
+                                             
+D:\padma223\mypack>cd ..                     
+                                             
+D:\padma223>java mypack.AccountBalance
+Name:r
+Balance:1000.0
+Name:q
+Balance:2000.0
+No balance
