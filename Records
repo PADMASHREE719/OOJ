@@ -1,0 +1,137 @@
+package pack;
+import java.util.Scanner;
+
+class Student {
+       String usn;
+    String name;
+    int age;
+    String dept;
+    int sem;
+
+    public Student(String usn, String name, int age, String dept, int sem) {
+        this.usn = usn;
+        this.name = name;
+        this.age = age;
+        this.dept = dept;
+        this.sem = sem;
+    }
+
+   
+    public void printDetails() {
+        System.out.println("USN: " + usn);
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+        System.out.println("Department: " + dept);
+        System.out.println("Semester: " + sem);
+    }
+}
+
+
+class PG_student extends Student {
+    String intern_companyname;
+
+ 
+    public PG_student(String usn, String name, int age, String dept, int sem, String intern_companyname) {
+        super(usn, name, age, dept, sem);
+        this.intern_companyname = intern_companyname;
+    }
+
+   
+    public void printDetails() {
+        super.printDetails();
+        System.out.println("Internship Company: " + intern_companyname);
+    }
+}
+
+
+class ResearchScholar extends Student {
+    int no_publications;
+
+ 
+    public ResearchScholar(String usn, String name, int age, String dept, int sem, int no_publications) {
+        super(usn, name, age, dept, sem);
+        this.no_publications = no_publications;
+    }
+
+   
+    public void printDetails() {
+        super.printDetails();
+        System.out.println("Number of Publications: " + no_publications);
+    }
+}
+
+// Main class to run the program
+public class Records {
+    public static void main(String[] args) {
+        // Scanner for user input
+        Scanner scanner = new Scanner(System.in);
+
+        // Creating arrays for storing PG students and Research scholars
+        PG_student[] pgStudents = new PG_student[4];
+        ResearchScholar[] researchScholars = new ResearchScholar[4];
+
+        // Adding PG students and Research scholars (manually)
+        pgStudents[0] = new PG_student("PG001", "Alice", 24, "CS", 3, "Google");
+        pgStudents[1] = new PG_student("PG002", "Bob", 25, "IT", 2, "Amazon");
+        pgStudents[2] = new PG_student("PG003", "Charlie", 26, "ECE", 4, "Google");
+        pgStudents[3] = new PG_student("PG004", "David", 27, "Mechanical", 1, "Microsoft");
+
+        researchScholars[0] = new ResearchScholar("RS001", "Eve", 28, "Physics", 4, 3);
+        researchScholars[1] = new ResearchScholar("RS002", "Frank", 29, "Mathematics", 2, 0);
+        researchScholars[2] = new ResearchScholar("RS003", "Grace", 30, "Biology", 1, 0);
+        researchScholars[3] = new ResearchScholar("RS004", "Hannah", 31, "Chemistry", 3, 5);
+
+        // 1) Print the name of PG Students who have an internship in a company of user's choice
+        System.out.println("Enter the company name to filter PG Students by internship: ");
+        String companyName = scanner.nextLine();
+
+        System.out.println("PG Students who have an internship at " + companyName + ":");
+        for (int i = 0; i < pgStudents.length; i++) {
+            if (pgStudents[i].intern_companyname.equalsIgnoreCase(companyName)) {
+                System.out.println(pgStudents[i].name);
+            }
+        }
+
+        // 2) Print details of research scholars who have 0 publications
+        System.out.println("\nResearch Scholars with 0 publications:");
+        for (int i = 0; i < researchScholars.length; i++) {
+            if (researchScholars[i].no_publications == 0) {
+                researchScholars[i].printDetails();
+                System.out.println();
+            }
+        }
+
+        // Close the scanner
+        scanner.close();
+    }
+}
+
+
+OUTPUT
+D:\padma223>cd pack
+
+D:\padma223\pack>javac Records.java
+
+D:\padma223\pack>cd ..
+
+D:\padma223>java pack.Records
+Enter the company name to filter PG Students by internship:
+google
+PG Students who have an internship at google:
+Alice
+Charlie
+
+Research Scholars with 0 publications:
+USN: RS002
+Name: Frank
+Age: 29
+Department: Mathematics
+Semester: 2
+Number of Publications: 0
+
+USN: RS003
+Name: Grace
+Age: 30
+Department: Biology
+Semester: 1
+Number of Publications: 0
